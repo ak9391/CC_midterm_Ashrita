@@ -1,224 +1,165 @@
+//This is a series of events and scenes 
+//As the sun sets and the moon raises you fell asleep
+//You enter the dream world
 
+let set;
+let raise;
+let sky;
+let scene = 1; //size 
+let cox = 0;
+let coy = 0;
 
-let albert;
-let sally;
-let han;
+function setup() { 
+ createCanvas(windowWidth, windowHeight);
 
+ set = new Sun;
+raise = new Moon;
 
+}
+function draw() { 
+if(scene == 1){
 
-function setup(){
-  createCanvas (800,800);
-  background(128,79,79);
+    sky= map(mouseY,0, 500, 255,0);
+background(0,sky/2,sky);
+
+set.displaySun();
+raise.displayMoon();
+
+if(mouseY > 400){
+noStroke();
+fill(255,255,0);
+ellipse(random(0,windowWidth),random(0,windowHeight-200),random(0,5),random(0,5));
+ellipse(random(0,windowWidth),random(0,windowHeight-200),random(0,5),random(0,5));
+ellipse(random(0,windowWidth),random(0,windowHeight-200),random(0,5),random(0,5));
+ellipse(random(0,windowWidth),random(0,windowHeight-200),random(0,5),random(0,5));
+
+}
+} //scene 1
+
+//static screen effect
+if(scene == 2){ 
+background(0);
   noStroke();
-  
-albert = new Mushroom1();
-sally = new Mushroom2();
-han = new Mushroom3();
+  push();
+  for (this.cox =  0;this.cox <= width; this.cox+=10) { 
+    for (this.coy = 0 ;this.coy <= height ; this.coy+=10){
+      pop();
+          fill(random(0,255),0,0);
+          rect(this.cox,this.coy,4,4);
+          fill(0,0,random(0,255));
+          rect(this.cox+2,this.coy+2,4,4);
+          fill(0,random(0,255),0);
+          rect(this.cox-2,this.coy-2,4,4);  
+        }
+        }
+} //scene 2 
 
+//aura
+if(scene == 3){
+background(0);
 
-}
+noStroke();
+fill(145,223,178);
+circle(windowWidth/2,windowHeight/2,4000); //green fill 
 
-function draw(){
-  background(128,79,79);
-  drawDirt();
-  drawMycelium();
-  drawMycelium();
-  drawLight();
+stroke(145,223,178,200);
+strokeWeight(40);
+fill(179,212,157,200);
+circle(windowWidth/2,windowHeight/2,700); //green 
 
-  sally.display(0,0);
-  han.display(0,0);
-  
-}
+stroke(179,212,157,200);
+strokeWeight(20);
+fill(219,190,131,200);
+circle(windowWidth/2,windowHeight/2,600); //green dull
 
-function drawMycelium(){
-  
-  stroke(240,220,213);
-  strokeWeight(2);
-  
-  //Mushroom1
-  line(230,265,218,320);
-  line(218,320,180,310);
-  line(218,320,170,340);
-  line(218,320,220,380);
-  line(170,340,185,360);
-  line(170,340,165,375);
-  line(220,380,200,395);
-  line(220,380,240,440);
-  line(220,380,250,405);
-  
-  //Mushroom2
-  line(83.5,376.5,100,400);
-  line(100,400,75,450);
-  line(100,400,125,415);
-  line(125,415,160,380);
-  line(125,415,140,435);
-  line(75,450,55,460);
-  line(75,450,105,510);
-  line(125,415,200,420);
-  
-  //Mushroom3
-  line(348,440,320,455);
-  line(348,440,400,470);
-  line(348,440,355,515);
-  line(320,455,280,445);
-  line(320,455,270,470);
-  line(400,470,520,460);
-  line(400,470,470,490);
-  line(400,470,430,550);
-  line(355,515,320,530);
-  line(355,515,335,580);
-  line(520,460,540,470);
-  line(520,460,560,440);
-  line(470,490,460,510);
-  line(470,490,490,520);
-  line(470,490,515,485);
-  line(430,550,420,565);
-  line(430,550,450,580);
-  line(490,520,487,543);
-    
-}
+stroke(219,190,131,200);
+strokeWeight(20);
+fill(241,154,134,200);
+circle(windowWidth/2,windowHeight/2,500); //skin
 
-function drawDirt(){
-  beginShape();
-  fill(77,51,50);
-  noStroke();
-  vertex(0,300);
-  bezierVertex(0,300,229,150,550,425);
-  vertex(550,800);
-  vertex(0,800);
-  endShape();
-  
-  beginShape();
-  fill(77,51,50);
-  vertex(551,426);
-  vertex(800,501);
-  vertex(800,800);
-  vertex(400,800);
-  
-  endShape();
-  
-  beginShape();
-  fill(128,79,79);
-  stroke(77,51,50);
-  vertex(550,425);
-  bezierVertex(550,425,650,515,800,500);
-  endShape();
+stroke(241,154,134,70);
+strokeWeight(20);
+fill(243,132,138,200);
+circle(windowWidth/2,windowHeight/2,400); //peach 
 
-}
+stroke(243,108,141,200);
+strokeWeight(4);
+fill(243,108,141);
+circle(windowWidth/2,windowHeight/2,300); //pink center 
 
-function drawLight(){
-  
-  noStroke();
-  fill(255,170,52,150);
-  ellipse(35,800,125,125);
-  
-  fill(255,170,52,120);
-  ellipse(35,800,300,300);
-  
-  fill(255,170,52,80);
-  ellipse(35,800,575,575);
-  
-  fill(255,170,52,40);
-  ellipse(35,800,925,925);
-  
-  fill(255,170,52,10);
-  ellipse(35,800,1425,1425);
-  
-  fill(255,170,52,7);
-  ellipse(35,800,1950,1950);
-  
-}
-
-class Mushroom1{
-
-constructor(x,y){
-  this.x = x;
-  this.y = y;
 }
 
 
 
- display(){
-//undercap1B
-  beginShape();
-  fill(186,122,102);
-  noStroke();
-  vertex(130,140);
-  bezierVertex(130,140,170,160,205,167);
-  vertex(210,150);
-  endShape();
-  
-  beginShape();
-  vertex(260,160);
-  vertex(262,174);
-  bezierVertex(262,174,300,180,340,173);
-  endShape();
-  
-  //stem1
-  beginShape();
-  fill(181,125,110);
-  noStroke();
-  vertex(200,260);
-  bezierVertex(200,260,170,240,210,150);
-  vertex(260,160);
-  bezierVertex(260,160,275,230,260,269);
-  vertex(260,269);
-  endShape();
- 
-  //cap1
-  beginShape();
-  fill(122,64,68);
-  noStroke();
-  vertex(130,140);
-  bezierVertex(110,140,260,0,340,170);
-  vertex(340,173);
-  endShape();
- 
-  stroke(186,122,102);
-  strokeWeight(2);
-  line(132,140,338,173);
-  
-  //undercap1A
-  beginShape();
-  fill(186,122,102);
-  noStroke();
-  vertex(130,140);
-  bezierVertex(110,140,240,120,340,170);
-  vertex(340,173);
-  endShape();
 
-  //gill1A
-  fill(235,180,162);
-  noStroke();
-  curve(110,120,130,139,208,156,220,140);
- 
-  //gill1B
-  curve(120,140,170,157,207,158,220,140);
- 
-  //gill1C
-  stroke(235,180,162);
-  strokeWeight(1.5);
-  curve(162,128,165,136.5,212,155,225,158);
+} //draw loop
 
-  //gill1D
-  curve(210,130,200,137,215,155,220,160);
- 
-  //gill1E
-  curve(220,130,225,139,225,156,217,160);
+class Sun{
+ constructor(){
+    this.x = 100;
+ }
 
-  //gill1F
-  curve(245,132,250,142.5,240,158,227,162);
-  
-  //gill1G
-  curve(265,140,275,147,255,160,245,165);
-  
-  //gill1H
-  curve(330,150,312,158,258,161,250,158);
-  
-  //gill1I
-  curve(360,160,340,172,260,163,250,150);
+displaySun(){
 
-  //gill1J
-  curve(240,150,262,168,300,175.5,330,170);
+stroke(252,182,40,100);
+fill(252,182,40,100);
+circle(this.x,mouseY ,180); //yellow
+
+stroke(230,116,28,110);
+fill(230,116,28,110);
+circle(this.x,mouseY,140);
+
+stroke(230,116,28,120);
+fill(230,116,28,120);
+circle(this.x,mouseY,100); //orange
+
+stroke(230,65,10,130);
+fill(230,65,10,130);
+circle(this.x,mouseY,60);
+
+stroke(189,31,17,140);
+fill(189,31,17,140);
+circle(this.x,mouseY,20); //red
+
+}
 }
 
+class Moon{
+    constructor(){
+    this.posx = windowWidth-100;
+ }
+
+displayMoon(){
+
+stroke(255,50);
+fill(255,50);
+circle(this.posx, height - mouseY,180);
+
+stroke(255,60);
+fill(255,60);
+circle(this.posx, height - mouseY,140);
+
+stroke(255,70);
+fill(255,70);
+circle(this.posx, height - mouseY,100);
+
+stroke(255,80);
+fill(255,80);
+circle(this.posx, height - mouseY,60);
+
+stroke(255,90);
+fill(255,90);
+circle(this.posx, height - mouseY,20);
+
+}
+
+}
+
+
+function mousePressed() {
+ scene++;
+
+  if (scene > 3) {
+    scene = 1;
+  }
+}
