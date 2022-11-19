@@ -8,6 +8,7 @@ let sky;
 let scene = 1; //size 
 let cox = 0;
 let coy = 0;
+let r = 0;
 
 function setup() { 
  createCanvas(windowWidth, windowHeight);
@@ -30,8 +31,8 @@ noStroke();
 fill(255,255,0);
 ellipse(random(0,windowWidth),random(0,windowHeight-200),random(0,5),random(0,5));
 ellipse(random(0,windowWidth),random(0,windowHeight-200),random(0,5),random(0,5));
-ellipse(random(0,windowWidth),random(0,windowHeight-200),random(0,5),random(0,5));
-ellipse(random(0,windowWidth),random(0,windowHeight-200),random(0,5),random(0,5));
+ellipse(random(0,windowWidth),random(0,windowHeight-200),8,8);
+ellipse(random(0,windowWidth),random(0,windowHeight-200),10,10);
 
 }
 } //scene 1
@@ -56,6 +57,7 @@ background(0);
 
 //aura
 if(scene == 3){
+
 background(0);
 
 noStroke();
@@ -65,27 +67,29 @@ circle(windowWidth/2,windowHeight/2,4000); //green fill
 stroke(145,223,178,200);
 strokeWeight(40);
 fill(179,212,157,200);
-circle(windowWidth/2,windowHeight/2,700); //green 
+circle(windowWidth/2,windowHeight/2,700+r); //green 
 
 stroke(179,212,157,200);
 strokeWeight(20);
 fill(219,190,131,200);
-circle(windowWidth/2,windowHeight/2,600); //green dull
+circle(windowWidth/2,windowHeight/2,600+r); //green dull
 
 stroke(219,190,131,200);
 strokeWeight(20);
 fill(241,154,134,200);
-circle(windowWidth/2,windowHeight/2,500); //skin
+circle(windowWidth/2,windowHeight/2,500+r); //skin
 
 stroke(241,154,134,70);
 strokeWeight(20);
 fill(243,132,138,200);
-circle(windowWidth/2,windowHeight/2,400); //peach 
+circle(windowWidth/2,windowHeight/2,400+r); //peach 
 
 stroke(243,108,141,200);
 strokeWeight(4);
 fill(243,108,141);
-circle(windowWidth/2,windowHeight/2,300); //pink center 
+circle(windowWidth/2,windowHeight/2,300+r); //pink center 
+
+r = r+3;
 
 }
 
@@ -163,3 +167,5 @@ function mousePressed() {
     scene = 1;
   }
 }
+
+
